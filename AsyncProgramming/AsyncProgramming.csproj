@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>AsyncProgramming.HouseholdManagementSystem</StartupObject>
+    <StartupObject>AsyncProgramming.ImmediateDefferedAwait</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HouseholdManagementSystem.cs" />
+    <Compile Include="ImmediateDefferedAwait.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

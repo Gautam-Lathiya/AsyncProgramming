@@ -12,16 +12,24 @@ namespace AsyncProgramming
         static async Task Main(string[] args)
         {
             Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] Household Management System started.");
-            Task t1 = WashAndDryClothes();
-            Task t2 = CookDinner();
-            Task t3 = CleanHouse();
+            try
+            {
+                 await WashAndDryClothes();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] Exception: {ex.Message}");
+            }
+            //Task t2 = CookDinner();
+            //Task t3 = CleanHouse();
 
-            await Task.WhenAll(t1, t2, t3);
+            //await Task.WhenAll(t1, t2, t3);
             Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] Household Management System completed.");
         }
 
         private static async Task WashAndDryClothes()
         {
+            throw new Exception("An error occurred while washing clothes.");
             string wetClothes = await WashClothes();
             await DryClothes();
         }

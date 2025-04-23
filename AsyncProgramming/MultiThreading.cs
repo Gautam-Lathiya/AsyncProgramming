@@ -27,22 +27,54 @@ namespace AsyncProgramming
         //    Console.WriteLine("Thread work is done.");
         //}
 
+        //static void Main()
+        //{
+        //    Task task = Task.Run(() => {
+        //        Task.Delay(15000).Wait(); // simulate work
+        //        for (int i = 0; i < 5; i++)
+        //        {
+        //            Console.WriteLine($"Task thread: {i}");
+        //            Task.Delay(500); // simulate work
+        //        }
+        //    });
+
+        //    Console.WriteLine("Main thread continues...");
+
+        //    task.Wait(); // Wait for the task to finish
+        //    Console.WriteLine("Task completed.");
+        //    Console.ReadKey();
+        //}
+
         static void Main()
         {
-            Task task = Task.Run(() => {
-                Task.Delay(15000).Wait(); // simulate work
-                for (int i = 0; i < 5; i++)
+            Console.WriteLine($"[Main Thread] Start - {DateTime.Now:HH:mm:ss.fff} - Thread ID: {Thread.CurrentThread.ManagedThreadId}");
+
+            Task task = Task.Run(() =>
+            {
+                Console.WriteLine($"[Task Thread] Started - {DateTime.Now:HH:mm:ss.fff} - Thread ID: {Thread.CurrentThread.ManagedThreadId}");
+
+                for (int i = 1; i <= 5; i++)
                 {
-                    Console.WriteLine($"Task thread: {i}");
-                    Task.Delay(500); // simulate work
+                    Console.WriteLine($"[Task Thread] Iteration {i} - {DateTime.Now:HH:mm:ss.fff}");
+                    Thread.Sleep(1000); // simulate work
                 }
+
+                Console.WriteLine($"[Task Thread] Completed - {DateTime.Now:HH:mm:ss.fff}");
             });
 
-            Console.WriteLine("Main thread continues...");
+            // Main thread doing work in parallel
+            for (int i = 1; i <= 5; i++)
+            {
+                Console.WriteLine($"[Main Thread] Iteration {i} - {DateTime.Now:HH:mm:ss.fff}");
+                Thread.Sleep(800); // slightly faster than task thread
+            }
 
-            task.Wait(); // Wait for the task to finish
-            Console.WriteLine("Task completed.");
+            task.Wait(); // Wait for task to complete
+            Console.WriteLine($"[Main Thread] Task Completed - {DateTime.Now:HH:mm:ss.fff}");
             Console.ReadKey();
         }
     }
 }
+
+// multithreading => threads or tasks
+// locking => lock, mutex, semaphore

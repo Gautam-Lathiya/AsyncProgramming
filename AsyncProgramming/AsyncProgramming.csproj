@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>AsyncProgramming.MultiThreading</StartupObject>
+    <StartupObject>AsyncProgramming.Locking</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -49,6 +49,7 @@
     <Compile Include="AsParallel.cs" />
     <Compile Include="HouseholdManagementSystem.cs" />
     <Compile Include="ImmediateDefferedAwait.cs" />
+    <Compile Include="Locking.cs" />
     <Compile Include="MultiThreading.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -11,15 +11,32 @@ namespace AsyncProgramming
     {
         static void Main(string[] args)
         {
-            var numbers = Enumerable.Range(1, 10000000);
+            var numbers = Enumerable.Range(1, 10000);
 
             Stopwatch swSequential = Stopwatch.StartNew();
-            var sequentialResult = numbers.Where(n => IsPrime(n)).ToList();
+            var sequentialResult = new List<int>();
+            for (int i = 0; i < numbers.Count(); i++)
+            {
+                if (IsPrime(numbers.ElementAt(i)))
+                {
+                    sequentialResult.Add(numbers.ElementAt(i));
+                }
+            }
             swSequential.Stop();
             Console.WriteLine($"Sequential Count: {sequentialResult.Count}, Time: {swSequential.ElapsedMilliseconds} ms");
 
             Stopwatch swParallel = Stopwatch.StartNew();
-            var parallelResult = numbers.AsParallel().Where(n => IsPrime(n)).ToList();
+            var parallelResult = new List<int>();
+            Parallel.ForEach(numbers, number =>
+            {
+                if (IsPrime(number))
+                {
+                    //lock (parallelResult)
+                    //{
+                        parallelResult.Add(number);
+                    //}
+                }
+            });
             swParallel.Stop();
             Console.WriteLine($"Parallel Count: {parallelResult.Count}, Time: {swParallel.ElapsedMilliseconds} ms");
 
